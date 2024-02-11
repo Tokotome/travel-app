@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->dropColumn(['city', 'country']);
+        Schema::table('excursions', function (Blueprint $table) {
+            $table->dropColumn(['location_city', 'location_country']);
         });
     }
 
@@ -21,10 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            // If needed, you can recreate the 'city' and 'country' columns
-            $table->string('city');
-            $table->string('country');
+        Schema::table('excursions', function (Blueprint $table) {
+            $table->string('location_city')->nullable();
+            $table->string('location_country')->nullable();
         });
     }
 };
