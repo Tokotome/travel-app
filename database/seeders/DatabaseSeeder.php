@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Hotel::factory(300)->create();
         \App\Models\Excursion::factory(300)->create();
         \App\Models\ReservationStatus::factory(2)->create();
+        \App\Models\ReservationStatus::factory(2)->create();
     }
 }

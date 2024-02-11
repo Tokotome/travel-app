@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Destination;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,13 +17,11 @@ class HotelFactory extends Factory
      */
     public function definition(): array
     {
-        $cityAndCountry = $this->faker->numberBetween(1, 60);
-        
+        $destinationIds = Destination::pluck('id');
         return [
+            'destination' => $this->faker->randomElement($destinationIds),
             'name' => $this->faker->name,
             'category' => $this->faker->numberBetween(3, 5),
-            'city' => $cityAndCountry,
-            'country' => $cityAndCountry,
             'has_pool' => $this->faker->boolean,
             'has_fitness' => $this->faker->boolean,
         ];
