@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $fillable = ['country', 'city'];
 }

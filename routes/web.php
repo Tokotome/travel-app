@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\ProviderController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\Auth\ProviderController;
+use App\Http\Controllers\ExcursionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +39,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+//destinations
+Route::get('/destinations', [DestinationController::class, 'index']);
+Route::get('/destinations/{country}/cities', [DestinationController::class, 'hotels']);
+
+//hotels
+Route::get('/hotels/{destination}/{has_pool?}/{has_fitness?}/{category?}', [HotelController::class, 'getHotels']);
+
+//excursions
+Route::get('/excursions/{start_city}/{destination?}', [ExcursionController::class, 'getExcursions']);
 
 require __DIR__.'/auth.php';
