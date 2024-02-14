@@ -37,6 +37,6 @@ class ExcursionController extends Controller
     
     $excursions = $query->distinct()->get();
     
-    return $excursions;
+    return view('layouts.excursions', compact('excursions'));
     }
 }
