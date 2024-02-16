@@ -17,35 +17,12 @@
                                             <h2 class="card-text">{{ $excursion->city }}</h2>
                                             <h3 class="card-text">Start: {{ date('d.m.Y', strtotime($excursion->start_date)) }}</h3>
                                             <h3 class="card-text">Prices from {{ $excursion->price }} lv</h3>
-                                            <a href="#" class="btn btn-primary">Go</a>
+                                            <a href="{{ route('getExcursion', ['id' => $excursion->id]) }}" class="btn btn-primary">Go</a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         @endforeach
-                        <div class="col">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="https://picsum.photos/200/300" alt="Card image cap">
-                                <div class="card-body">
-                                    <h1 class="card-title">Cuba</h1>
-                                    <h2 class="card-text">Havana</h2>
-                                    <h3 class="card-text">Prices from 100 lv</h3>
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="col">
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="https://picsum.photos/200/300" alt="Card image cap">
-                                <div class="card-body">
-                                    <h1 class="card-title">Cuba</h1>
-                                    <h2 class="card-text">Havana</h2>
-                                    <h3 class="card-text">Prices from 100 lv</h3>
-                                    <a href="#" class="btn btn-primary">Go</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

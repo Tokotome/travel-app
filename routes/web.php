@@ -44,9 +44,10 @@ Route::get('/destinations', [DestinationController::class, 'index']);
 Route::get('/destinations/{country}/cities', [DestinationController::class, 'hotels']);
 
 //hotels
-Route::get('/hotels/{destination}/{has_pool?}/{has_fitness?}/{category?}', [HotelController::class, 'getHotels']);
+Route::get('/hotels/{destination}/{has_pool?}/{has_fitness?}/{category?}', [HotelController::class, 'getHotels'])->name('getHotels');
 
 //excursions
-Route::get('/excursions', [ExcursionController::class, 'index'])->name('excursions');;
+Route::get('/excursions', [ExcursionController::class, 'index'])->name('excursions');
+Route::get('/excursions/{id}', [ExcursionController::class, 'getSingle'])->name('getExcursion');
 
 require __DIR__.'/auth.php';

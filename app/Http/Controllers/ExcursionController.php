@@ -39,4 +39,17 @@ class ExcursionController extends Controller
     
     return view('layouts.excursions', compact('excursions'));
     }
+
+    public function getSingle ($id) {
+        $excursion = Excursion::join('destinations', 'excursions.destination', '=', 'destinations.id')
+        ->select(
+            'excursions.*',
+            'destinations.city',
+            'destinations.country',
+            DB::raw('DATEDIFF(excursions.end_date, excursions.start_date)-1 as total_nights')
+        )
+        ->where('excursions.id', $id)
+        ->firstOrFail();
+         return view('layouts.single_excursion', ['excursion' => $excursion]);
+    }
 }
