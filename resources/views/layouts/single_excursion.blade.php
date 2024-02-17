@@ -10,13 +10,13 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="ml-5"><strong>Country:</strong> {{ $excursion->country }}</div>
+                                    <div class="ml-5 mt-3"><strong>Country:</strong> {{ $excursion->country }}</div>
                                     <div class="ml-5"><strong>City:</strong> {{ $excursion->city }}</div>
                                     <div class="ml-5"><strong>Start from:</strong> {{ $excursion->start_city }}</div>
                                     <div class="ml-5"><strong>Start date:</strong> {{ date('d.m.Y', strtotime($excursion->start_date)) }}</div>
                                     <div class="ml-5"><strong>End date:</strong> {{ date('d.m.Y', strtotime($excursion->end_date)) }}</div>
-                                    <div class="ml-5"><strong>Total nights:</strong>{{$excursion->total_nights}} </div>
-                                    <a href="{{ route('getHotels', ['destination' => $excursion->destination]) }}" class="btn btn-primary ml-5">Check hotels</a>
+                                    <div class="ml-5 mb-3"><strong>Total nights:</strong>{{$excursion->total_nights}} </div>
+                                    <a href="{{ route('getHotels', ['destination' => $excursion->destination]) }}" class="btn btn-primary ml-5 mb-3">Check hotels</a>
                                 </div>
                             </div>
                         </div>

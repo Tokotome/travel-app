@@ -25,8 +25,10 @@ class HotelController extends Controller
         if ($request->has('category')) {
             $query->where('category', $request->input('category'));
         }
-
+        
+        $query->orderBy('category', 'asc');
         $hotels = $query->get();
-        return $hotels;
+        
+        return view('layouts.hotels', ['hotels' => $hotels]);
     }
 }
