@@ -12,7 +12,7 @@ class ExcursionController extends Controller
     public function index(Request $request, $startCity = null, $destination = null) {
         $today = Carbon::today()->toDateString();
 
-    $query = DB::table('excursions')
+        $query = DB::table('excursions')
         ->join('destinations', 'excursions.destination', '=', 'destinations.id')
         ->select(
             'excursions.*',
@@ -24,20 +24,20 @@ class ExcursionController extends Controller
         ->orderBy('excursions.start_date', 'asc');
 
     
-    if (!is_null($startCity)) {
-        $query->where('excursions.start_city', $startCity);
-    } elseif ($request->has('start_city')) {
-        $query->where('excursions.start_city', $request->input('start_city'));
-    }
+        if (!is_null($startCity)) {
+            $query->where('excursions.start_city', $startCity);
+        } elseif ($request->has('start_city')) {
+            $query->where('excursions.start_city', $request->input('start_city'));
+        }
 
     
-    if ($request->has('destination')) {
-        $query->where('destinations.id', $request->input('destination'));
-    }
-    
-    $excursions = $query->distinct()->get();
-    
-    return view('layouts.excursions', compact('excursions'));
+        if ($request->has('destination')) {
+            $query->where('destinations.id', $request->input('destination'));
+        }
+        
+        $excursions = $query->distinct()->get();
+        
+        return view('layouts.excursions', compact('excursions'));
     }
 
     public function getSingle ($id) {

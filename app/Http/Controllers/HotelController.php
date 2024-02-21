@@ -11,7 +11,7 @@ class HotelController extends Controller
         
     }
 
-    public function getHotels($destination,  Request $request) {
+    public function getHotels($destination, Request $request) {
         $query = Hotel::where('destination', $destination);
 
         if ($request->has('has_pool')) {
@@ -28,7 +28,6 @@ class HotelController extends Controller
         
         $query->orderBy('category', 'asc');
         $hotels = $query->get();
-        
         return view('layouts.hotels', ['hotels' => $hotels]);
     }
 }

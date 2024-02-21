@@ -1,7 +1,6 @@
 @extends('layouts.mains.main_layout_hotels')
 
 @section('content')
-
         <div class="container">  
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <table class="table">
@@ -35,7 +34,12 @@
                                 @endif
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-primary ml-5 mb-3">Book</a>
+                                <form method="POST" action="{{ route('reservations.store', ['excursionId' => request()->route('excursionId')]) }}">
+                                    @csrf
+                                    @method('POST')
+                                    <input type="hidden" name="hotelId" value="{{ $hotel->id }}">
+                                    <button type="submit" class="btn btn-secondary ml-5 mb-3">Book</button>
+                                </form>
                                 </td>
                             </tr>                       
                             @endforeach
