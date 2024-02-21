@@ -54,3 +54,5 @@ Route::get('/excursions/{id}', [ExcursionController::class, 'getSingle'])->name(
 //reservations
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
 require __DIR__.'/auth.php';
+
+//test comment
