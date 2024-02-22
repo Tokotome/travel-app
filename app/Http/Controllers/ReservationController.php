@@ -7,6 +7,7 @@ use App\Models\Excursion;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
@@ -19,7 +20,7 @@ class ReservationController extends Controller
         
     }
 
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
         $user = Auth::user();
         $excursion = Excursion::find($request->excursionId);
@@ -54,8 +55,8 @@ class ReservationController extends Controller
 
     private function setFreeCancelationDate($startDate) {
         $startDate = Carbon::parse($startDate);
-        
-        return $freeCancellationDate = $startDate->subDays(14)->format('Y-m-d');
+        $freeCancellationDate = $startDate->subDays(14)->format('Y-m-d');
+        return $freeCancellationDate;
     }
 
     private function setBookedToReservation() {  
