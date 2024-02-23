@@ -16,7 +16,7 @@
                                     <div class="ml-5"><strong>Start date:</strong> {{ date('d.m.Y', strtotime($excursion->start_date)) }}</div>
                                     <div class="ml-5"><strong>End date:</strong> {{ date('d.m.Y', strtotime($excursion->end_date)) }}</div>
                                     <div class="ml-5 mb-3"><strong>Total nights:</strong>{{$excursion->total_nights}} </div>
-                                    <a href="{{ route('getHotels', ['destination' => $excursion->destination, 'excursionId' => $excursion->id]) }}" class="btn btn-primary ml-5 mb-3">Check hotels</a>
+                                    <a href="{{ route('getHotels', ['destinationId' => $excursion->destination, 'excursionId' => $excursion->id]) }}" class="btn btn-primary ml-5 mb-3">Check hotels</a>
                                 </div>
                             </div>
                         </div>

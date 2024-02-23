@@ -16,12 +16,19 @@
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('excursions')" :active="request()->routeIs('excursions')">
                             {{ __('Excursions') }}
                         </x-nav-link>
                     </div>
-                </div>
+                    
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('views.reservations')" :active="request()->routeIs('views.reservations')">
+                                {{ __('My reservations') }}
+                            </x-nav-link>
+                        </div>
+                    </div>
 
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ms-6">

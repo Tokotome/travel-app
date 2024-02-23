@@ -53,4 +53,9 @@ Route::get('/excursions/{id}', [ExcursionController::class, 'getSingle'])->name(
 
 //reservations
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::get('/reservations', [ReservationController::class, 'index'])
+    ->middleware('auth') 
+    ->name('views.reservations');
+
+    
 require __DIR__.'/auth.php';
