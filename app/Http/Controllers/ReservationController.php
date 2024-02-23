@@ -20,6 +20,7 @@ class ReservationController extends Controller
             $query = DB::table('reservations')
             ->join('excursions', 'reservations.excursion_id', '=', 'excursions.id')
             ->join('destinations', 'excursions.destination', '=', 'destinations.id')
+            ->where('reservations.user_id', $user->id)
             ->select(
                 'reservations.free_cancelation_date as free_cancelation_date',
                 'reservations.status as status',
