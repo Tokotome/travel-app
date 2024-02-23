@@ -14,7 +14,6 @@ class ReservationController extends Controller
 {
 
     public function index() {
-        
         $user = Auth::user();
         if ($user) {
            
@@ -37,7 +36,6 @@ class ReservationController extends Controller
             
             return view('reservations', compact('reservations'));
         } else {
-
             return redirect()->route('login')->with('error', 'Please log in to view your reservations.');
         }
     }
@@ -46,8 +44,7 @@ class ReservationController extends Controller
         
     }
 
-    public function store(ReservationRequest $request)
-    {
+    public function store(ReservationRequest $request) {
         $user = Auth::user();
         $excursion = Excursion::find($request->excursionId);
     

@@ -7,8 +7,8 @@ use App\Models\Excursion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ExcursionController extends Controller
-{
+class ExcursionController extends Controller {
+    
     public function index(Request $request, $startCity = null, $destination = null) {
         $today = Carbon::today()->toDateString();
 

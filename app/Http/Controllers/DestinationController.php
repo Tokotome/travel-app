@@ -9,7 +9,6 @@ class DestinationController extends Controller
 {
     public function index() {
         $destinations = Destination::select('id', 'country', 'city')->get();
-
         $formattedDestinations = $destinations->mapWithKeys(function ($destination, $index) {
             return [$index => [
                 'id' => $destination->id,
@@ -22,17 +21,16 @@ class DestinationController extends Controller
     }
 
     public function cities($country) {
-    $cities = Destination::where('country', $country)->distinct()->get(['id', 'city']);
-    
-    $formattedCities = [];
-    
-    foreach ($cities as $city) {
-        $formattedCities[] = [
-            'id' => $city->id,
-            'city' => $city->city
-        ];
-    }
-    
+        $cities = Destination::where('country', $country)->distinct()->get(['id', 'city']);
+        $formattedCities = [];
+        
+        foreach ($cities as $city) {
+            $formattedCities[] = [
+                'id' => $city->id,
+                'city' => $city->city
+            ];
+        }
+        
         return response()->json(['cities' => $formattedCities]);
-    }
+        }
 }
