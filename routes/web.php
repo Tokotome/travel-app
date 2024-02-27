@@ -53,6 +53,7 @@ Route::get('/excursions/{id}', [ExcursionController::class, 'getSingle'])->name(
 
 //reservations
 Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+Route::put('/reservations/{reservationId}', [ReservationController::class, 'update'])->name('reservations.update');
 Route::get('/reservations', [ReservationController::class, 'index'])
     ->middleware('auth') 
     ->name('views.reservations');

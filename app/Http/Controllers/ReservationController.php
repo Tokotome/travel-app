@@ -16,19 +16,22 @@ class ReservationController extends Controller
     public function index() {
         $user = Auth::user();
         if ($user) {
-           
+            $currentDate = Carbon::now()->toDateString();
             $query = DB::table('reservations')
             ->join('excursions', 'reservations.excursion_id', '=', 'excursions.id')
             ->join('destinations', 'excursions.destination', '=', 'destinations.id')
             ->where('reservations.user_id', $user->id)
             ->select(
+                'reservations.id as id',
                 'reservations.free_cancelation_date as free_cancelation_date',
                 'reservations.status as status',
                  DB::raw("DATE_FORMAT(reservations.created_at, '%d.%m.%Y') as created_at"),
                 'reservations.status as status',
-                 DB::raw("DATE_FORMAT(excursions.start_date, '%d.%m.%Y') as start_date"),
-                 DB::raw("DATE_FORMAT(excursions.end_date, '%d.%m.%Y') as end_date"),
-                 DB::raw("DATEDIFF(excursions.end_date, excursions.start_date)-1 as total_nights"),
+                DB::raw("DATE_FORMAT(reservations.updated_at, '%d.%m.%Y') as updated_at"),
+                DB::raw("DATE_FORMAT(excursions.start_date, '%d.%m.%Y') as start_date"),
+                DB::raw("DATE_FORMAT(excursions.end_date, '%d.%m.%Y') as end_date"),
+                DB::raw("DATEDIFF(excursions.end_date, excursions.start_date)-1 as total_nights"),
+                DB::raw("DATEDIFF(excursions.start_date, '$currentDate')-1 as days_left"),
                 'destinations.country as country',
                 'destinations.city as city',
             )
@@ -75,6 +78,13 @@ class ReservationController extends Controller
 
     }
 
+    public function update($reservationId) {
+        $resevarion = Reservation::find($reservationId);
+        $resevarion->status = $this->cancellReservation();
+        $resevarion->save();
+        return redirect()->route('views.reservations')->with('success', 'Reservation created successfully!');
+    }
+
     private function setFreeCancelationDate($startDate) {
         $startDate = Carbon::parse($startDate);
         $freeCancellationDate = $startDate->subDays(14)->format('Y-m-d');
@@ -84,5 +94,10 @@ class ReservationController extends Controller
     private function setBookedToReservation() {  
         $statusBooked = 5;
         return $statusBooked;
+    }
+
+    private function cancellReservation() {  
+        $statusCancelled = 6;
+        return $statusCancelled;
     }
 }
