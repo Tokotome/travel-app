@@ -85,6 +85,17 @@ class ReservationController extends Controller
         return redirect()->route('views.reservations')->with('success', 'Reservation created successfully!');
     }
 
+    public function destroy($reservationId) {
+        $reservation = Reservation::find($reservationId);
+        
+        if($reservation) {
+            $reservation->delete();
+            return redirect()->route('views.reservations')->with('success', 'Reservation created successfully!');
+        } else {
+            return redirect()->route('views.reservations')->with('error', 'Reservation not found');
+        }
+    }
+
     private function setFreeCancelationDate($startDate) {
         $startDate = Carbon::parse($startDate);
         $freeCancellationDate = $startDate->subDays(14)->format('Y-m-d');

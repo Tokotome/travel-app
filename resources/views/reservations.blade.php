@@ -53,6 +53,15 @@
                                     @if ($reservation->status == 5 && $reservation->days_left == 1)
                                         {{$reservation->days_left}} day until the start 
                                     @endif
+
+                                    @if ($reservation->status == 6)
+                                        <form method="POST" action="{{ route('reservations.destroy', ['reservationId' => $reservation->id]) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                                <input type="hidden" name="reservationId" value="{{ $reservation->id }}">
+                                                <button type="submit" class="btn btn-secondary">Delete the row</button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>                       
                             @endforeach
