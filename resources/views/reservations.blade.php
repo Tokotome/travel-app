@@ -3,6 +3,11 @@
 @section('content')
         <div class="container">  
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @if (empty($reservations))
+                <div class="alert alert-info text-center mt-5" role="alert">
+                    No reservations found.
+                </div>
+            @else
                 <table class="table">
                     <thead>
                         <tr>
@@ -67,6 +72,7 @@
                             @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
         </div>
 @endsection
