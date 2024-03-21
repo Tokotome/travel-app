@@ -73,6 +73,11 @@
                     </tbody>
                 </table>
                 @endif
+                <!-- Pagination links -->
+                <div class="col-12 mt-3">
+                    {{ $reservations->links() }}
+                    <p>Total Pages: {{ $reservations->lastPage() }}</p> <!-- Display total pages -->
+                </div>
             </div>
         </div>
 @endsection

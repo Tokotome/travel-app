@@ -36,7 +36,7 @@ class ReservationController extends Controller
                 'destinations.city as city',
             )
             ->orderBy('excursions.start_date', 'asc');
-            $reservations = $query->distinct()->get();
+            $reservations = $query->distinct()->paginate(10);
             
             return view('reservations', compact('reservations'));
         } else {

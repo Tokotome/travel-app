@@ -12,23 +12,21 @@
                                     No excursions found.
                                 </div>
                             @else
-                                
-                                    @foreach ($excursions as $excursion)
-                                        <div class="col">
-                                            <div class="card" style="width: 18rem;">
-                                                <img class="card-img-top" src="https://picsum.photos/200/300" alt="Card image cap">
-                                                <div class="card-body">
-                                                    <h1 class="ml-3 mt-3">{{ $excursion->country }}</h1>
-                                                    <h2 class="card-text ml-3">{{ $excursion->city }}</h2>
-                                                    <h3 class="card-text ml-3">Start: {{ date('d.m.Y', strtotime($excursion->start_date)) }}</h3>
-                                                    <h3 class="card-text ml-3">Prices from {{ $excursion->price }} lv</h3>
-                                                    <a href="{{ route('getExcursion', ['id' => $excursion->id]) }}" class="btn btn-primary ml-3 mb-3 mt-3">Go</a>
-                                                </div>
+                                @foreach ($excursions as $excursion)
+                                    <div class="col">
+                                        <div class="card" style="width: 18rem;">
+                                            <img class="card-img-top" src="https://picsum.photos/200/300" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h1 class="ml-3 mt-3">{{ $excursion->country }}</h1>
+                                                <h2 class="card-text ml-3">{{ $excursion->city }}</h2>
+                                                <h3 class="card-text ml-3">Start: {{ date('d.m.Y', strtotime($excursion->start_date)) }}</h3>
+                                                <h3 class="card-text ml-3">Prices from {{ $excursion->price }} lv</h3>
+                                                <a href="{{ route('getExcursion', ['id' => $excursion->id]) }}" class="btn btn-primary ml-3 mb-3 mt-3">Go</a>
                                             </div>
-                                            <br>
                                         </div>
-                                    @endforeach
-                                
+                                        <br>
+                                    </div>
+                                @endforeach
                                  <!-- Pagination links -->
                                 <div class="col-12 mt-3">
                                     {{ $excursions->links() }}
