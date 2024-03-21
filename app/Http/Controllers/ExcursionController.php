@@ -35,7 +35,7 @@ class ExcursionController extends Controller {
             $query->where('destinations.id', $request->input('destination'));
         }
         
-        $excursions = $query->distinct()->get();
+        $excursions = $query->distinct()->paginate(12);
         
         return view('layouts.excursions', compact('excursions'));
     }

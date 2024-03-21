@@ -12,8 +12,8 @@
                                     No excursions found.
                                 </div>
                             @else
-                                @foreach ($excursions->chunk(3) as $chunk)
-                                    @foreach ($chunk as $excursion)
+                                
+                                    @foreach ($excursions as $excursion)
                                         <div class="col">
                                             <div class="card" style="width: 18rem;">
                                                 <img class="card-img-top" src="https://picsum.photos/200/300" alt="Card image cap">
@@ -28,7 +28,12 @@
                                             <br>
                                         </div>
                                     @endforeach
-                                @endforeach
+                                
+                                 <!-- Pagination links -->
+                                <div class="col-12 mt-3">
+                                    {{ $excursions->links() }}
+                                    <p>Total Pages: {{ $excursions->lastPage() }}</p> <!-- Display total pages -->
+                                </div>
                             @endif
                     </div>
                 </div>
